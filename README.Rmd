@@ -23,11 +23,11 @@ ghost is an R package designed to provide a simple interface for extracting data
 * `gho_indicators()` provides a data frame of all available [indicators](https://www.who.int/data/gho/info/gho-odata-api#exe3) in the GHO.
 * `gho_dimensions()` provides a data frame of all available [dimensions](https://www.who.int/data/gho/info/gho-odata-api#exe1) in the GHO.
 * `gho_dimension_values()` provides a data frame of all available [values for a single dimension](https://www.who.int/data/gho/info/gho-odata-api#exe2) in the GHO.
-* `gho_data()` extracts data for any provided indicators in the GHO.
+* `gho_data()` extracts data from a selection of indicators in the GHO and outputs all results in a single data frame.
 
-The interface is designed to be as simple as possible, only requiring input of the code for an indicator to bring it up. However, it is also compatible with using more complex queries in line with the OData protocol. Details on its implementation available in the [OData documentation](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/).
+The interface is designed to be as simple as possible, only requiring input of the code of an indicator to extract it. However, it is also compatible with using more complex queries in line with the OData protocol. Details on its implementation available in the [OData documentation](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/).
 
-ghost can be installed using `remotes::install_github("caldwellst\ghost")`
+ghost can be installed using `remotes::install_github("caldwellst/ghost")`
 
 ## Usage
 
@@ -51,16 +51,16 @@ Let's say we want to filter by `COUNTRY`, then we can explore explore the possib
 gho_dimension_values("COUNTRY")
 ```
 
-If we wanted to only extract `AIR_1` data on Burundi from the GHO, then we can now implement an OData query using the code we've identified above.
+If we wanted to only extract `AIR_1` data on Burundi from the GHO, then we can now implement an OData query using the code we've identified above. While ghost doesn't implement complex checks on your OData queries due to their complexity, it allows you to type them with spaces and checks that each query begins with the required `"$filter=..."`.
 ```{r air_1_again}
 gho_data("AIR_1", "$filter=SpatialDim eq 'BDI'")
 ```
-And we can collect information on multiple indicators in one call, with the data frames already merged together.
+And we can get data from the GHO on multiple indicators in one call, with the output data frames already merged together.
 ```{r gho_data_2}
 gho_data(c("AIR_1", "AIR_10", "AIR_11"), "$filter=SpatialDim eq 'BDI'")
 ```
 
-We can even provide different filters for each variable separately, such as Burundi for `AIR_1`, Uganda for `AIR_10`, and South Africa for `AIR_11`.
+We can even provide different filters for each indicator separately, such as Burundi for `AIR_1`, Uganda for `AIR_10`, and South Africa for `AIR_11`. 
 ```{r gho_data_3}
 gho_data(c("AIR_1", "AIR_10", "AIR_11"), 
          c("$filter=SpatialDim eq 'BDI'", "$filter=SpatialDim eq 'UGA'", "$filter=SpatialDim eq 'ZAF'"))
@@ -75,4 +75,4 @@ gho_indicators() %>%
   pull(IndicatorCode) %>%
   gho_data()
 ```
-And once we have that data, we can then filter, explore, and analyze the data with our standard R workflow, or even export to Excel or other analytical tools.
+And once we have that data, we can then filter, explore, and analyze the data with our standard R workflow, or even export the downloaded data to Excel or other analytical tools for further use.

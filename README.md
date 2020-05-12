@@ -22,16 +22,17 @@ and extract of these into R data frames.
     [values for a single
     dimension](https://www.who.int/data/gho/info/gho-odata-api#exe2) in
     the GHO.
-  - `gho_data()` extracts data for any provided indicators in the GHO.
+  - `gho_data()` extracts data from a selection of indicators in the GHO
+    and outputs all results in a single data frame.
 
 The interface is designed to be as simple as possible, only requiring
-input of the code for an indicator to bring it up. However, it is also
+input of the code of an indicator to extract it. However, it is also
 compatible with using more complex queries in line with the OData
 protocol. Details on its implementation available in the [OData
 documentation](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/).
 
 ghost can be installed using
-`remotes::install_github("caldwellst\ghost")`
+`remotes::install_github("caldwellst/ghost")`
 
 ## Usage
 
@@ -109,7 +110,9 @@ gho_dimension_values("COUNTRY")
 
 If we wanted to only extract `AIR_1` data on Burundi from the GHO, then
 we can now implement an OData query using the code we’ve identified
-above.
+above. While ghost doesn’t implement complex checks on your OData
+queries due to their complexity, it allows you to type them with spaces
+and checks that each query begins with the required `"$filter=..."`.
 
 ``` r
 gho_data("AIR_1", "$filter=SpatialDim eq 'BDI'")
@@ -124,8 +127,8 @@ gho_data("AIR_1", "$filter=SpatialDim eq 'BDI'")
 #> #   Date <chr>
 ```
 
-And we can collect information on multiple indicators in one call, with
-the data frames already merged together.
+And we can get data from the GHO on multiple indicators in one call,
+with the output data frames already merged together.
 
 ``` r
 gho_data(c("AIR_1", "AIR_10", "AIR_11"), "$filter=SpatialDim eq 'BDI'")
@@ -143,8 +146,8 @@ gho_data(c("AIR_1", "AIR_10", "AIR_11"), "$filter=SpatialDim eq 'BDI'")
 #> #   High <dbl>, Comments <lgl>, Date <chr>
 ```
 
-We can even provide different filters for each variable separately, such
-as Burundi for `AIR_1`, Uganda for `AIR_10`, and South Africa for
+We can even provide different filters for each indicator separately,
+such as Burundi for `AIR_1`, Uganda for `AIR_10`, and South Africa for
 `AIR_11`.
 
 ``` r
@@ -193,5 +196,5 @@ gho_indicators() %>%
 ```
 
 And once we have that data, we can then filter, explore, and analyze the
-data with our standard R workflow, or even export to Excel or other
-analytical tools.
+data with our standard R workflow, or even export the downloaded data to
+Excel or other analytical tools for further use.
