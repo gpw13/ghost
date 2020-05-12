@@ -40,6 +40,7 @@ available in the GHO.
 
 ``` r
 library(ghost)
+
 gho_indicators()
 #> # A tibble: 2,268 x 3
 #>   IndicatorCode IndicatorName                                           Language
@@ -171,14 +172,6 @@ insensitive).
 
 ``` r
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 library(stringr)
 
 gho_indicators() %>%
@@ -198,3 +191,7 @@ gho_indicators() %>%
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <lgl>,
 #> #   High <lgl>, Comments <lgl>, Date <chr>
 ```
+
+And once we have that data, we can then filter, explore, and analyze the
+data with our standard R workflow, or even export to Excel or other
+analytical tools.

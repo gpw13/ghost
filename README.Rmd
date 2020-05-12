@@ -35,6 +35,7 @@ To begin, we can use `gho_indicators()` to begin to explore all data available i
 
 ```{r gho_indicators}
 library(ghost)
+
 gho_indicators()
 ```
 If we want the data for `AIR_1`, we could now just quickly access the data frame using `gho_data()`.
@@ -65,7 +66,7 @@ gho_data(c("AIR_1", "AIR_10", "AIR_11"),
          c("$filter=SpatialDim eq 'BDI'", "$filter=SpatialDim eq 'UGA'", "$filter=SpatialDim eq 'ZAF'"))
 ```
 Of course, the reality is that it's likely easier for us to work outside the OData filtering framework and directly in R, so here's a final more complex example using dplyr and stringr alongside ghost to automatically download all indicators with the word "drug" in the indicator name (case insensitive).
-```{r gho_dplyr}
+```{r gho_dplyr, message = FALSE}
 library(dplyr)
 library(stringr)
 
@@ -74,3 +75,4 @@ gho_indicators() %>%
   pull(IndicatorCode) %>%
   gho_data()
 ```
+And once we have that data, we can then filter, explore, and analyze the data with our standard R workflow, or even export to Excel or other analytical tools.
