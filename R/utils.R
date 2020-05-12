@@ -23,8 +23,14 @@ assert_query <- function(qry) {
 }
 
 #' @noRd
+modify_query <- function(qry) {
+  gsub(" ", "%20", qry)
+}
+
+#' @noRd
 .gho_api <- function(path = NULL, query = NULL) {
   assert_query(query)
+  query <- modify_query(query)
   url <- httr::modify_url("https://ghoapi.azureedge.net", path = paste0("api/", path), query = query)
 
   resp <- httr::GET(url)
@@ -33,10 +39,11 @@ assert_query <- function(qry) {
   }
 
   if (httr::http_error(resp)) {
+    print(httr::status_code(resp))
     stop(
       sprintf(
-        "GitHub API request failed [%s]\n%s\n<%s>",
-        httr::status_code(resp),
+        "GHO API request failed with status %s",
+        httr::status_code(resp)
       ),
       call. = FALSE
     )
@@ -56,9 +63,3 @@ assert_query <- function(qry) {
 
 #' @noRd
 gho_api <- memoise::memoise(.gho_api)
-
-#' @export
-print.gho_api <- function(x, ...) {
-  cat("<GHO ", x$path, ">\n", sep = "")
-  x$content
-}
