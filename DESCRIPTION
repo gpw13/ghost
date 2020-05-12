@@ -1,11 +1,11 @@
 Package: ghost
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R Client for the Global Health Observatory API
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
+Maintainer: The package maintainer <caldwellst@gmail.com>
+Description: Provides access to data stored in the Global Health Observatory (GHO) API.
+URL: http://www9.who.int/gho/en/, https://github.com/caldwellst/ghost
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
