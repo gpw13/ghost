@@ -62,4 +62,4 @@ modify_query <- function(qry) {
 }
 
 #' @noRd
-gho_api <- memoise::memoise(.gho_api)
+gho_api <- memoise::memoise(.gho_api, envir = globalenv())
