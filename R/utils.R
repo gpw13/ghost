@@ -28,7 +28,7 @@ modify_query <- function(qry) {
 }
 
 #' @noRd
-.gho_api <- function(path = NULL, query = NULL) {
+gho_api <- function(path = NULL, query = NULL) {
   assert_query(query)
   query <- modify_query(query)
   url <- httr::modify_url("https://ghoapi.azureedge.net", path = paste0("api/", path), query = query)
@@ -60,6 +60,3 @@ modify_query <- function(qry) {
     class = "gho_api"
   )
 }
-
-#' @noRd
-gho_api <- memoise::memoise(.gho_api, envir = globalenv())
