@@ -3,7 +3,6 @@ Type: Package
 Title: R Client for the Global Health Observatory API
 Version: 0.1.0
 Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
-Maintainer: The package maintainer <caldwellst@gmail.com>
 Description: Provides access to data stored in the Global Health Observatory (GHO) API.
 URL: http://www9.who.int/gho/en/, https://github.com/caldwellst/ghost
 License: GPL-3
