@@ -33,13 +33,12 @@ gho_api <- function(path = NULL, query = NULL) {
   query <- modify_query(query)
   url <- httr::modify_url("https://ghoapi.azureedge.net", path = paste0("api/", path), query = query)
 
-  resp <- httr::GET(url)
+  resp <- httr::GET(url, httr::accept_json())
   if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
 
   if (httr::http_error(resp)) {
-    print(httr::status_code(resp))
     stop(
       sprintf(
         "GHO API request failed with status %s",
