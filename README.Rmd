@@ -16,6 +16,10 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 # ghost
 
+<!-- badges: start -->
+  [![Travis build status](https://travis-ci.com/caldwellst/ghost.svg?branch=master)](https://travis-ci.com/caldwellst/ghost)
+<!-- badges: end -->
+
 ## Overview
 
 ghost is an R package designed to provide a simple interface for extracting data from the World Health Organization's Global Health Observatory (GHO) database using the [Open Data Protocol API](https://www.who.int/data/gho/info/gho-odata-api). The package allows for exploration of indicators and dimensions available in the GHO and extract of these into R data frames.
