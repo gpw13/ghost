@@ -4,9 +4,20 @@
 \name{ghost-package}
 \alias{ghost}
 \alias{ghost-package}
-\title{ghost: What the Package Does (Title Case)}
+\title{ghost: R Client for the Global Health Observatory API}
 \description{
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Provides access to data stored in the Global Health Observatory (GHO) API.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://www9.who.int/gho/en/}
+  \item \url{https://github.com/caldwellst/ghost}
+}
+
+}
+\author{
+\strong{Maintainer}: Seth Caldwell \email{caldwellst@gmail.com}
+
 }
 \keyword{internal}

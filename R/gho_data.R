@@ -18,7 +18,7 @@ gho_data <- function(inds, query = NULL) {
   }
   dplyr::bind_rows(ret)
 }
-
+#
 #' @title Load available dimensions from the GHO
 #'
 #' @description \code{gho_dimensions()} provides a data frame of all available [dimensions in the GHO](https://www.who.int/data/gho/info/gho-odata-api#exe1).
