@@ -68,16 +68,16 @@ gho_data("AIR_1")
 #> # A tibble: 372 x 23
 #>      Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
 #>   <int> <chr>         <chr>          <chr>      <chr>         <int> <lgl>   
-#> 1  4882 AIR_1         COUNTRY        AFG        YEAR           2004 NA      
-#> 2  4883 AIR_1         COUNTRY        ALB        YEAR           2004 NA      
-#> 3  4884 AIR_1         COUNTRY        DZA        YEAR           2004 NA      
-#> 4  4885 AIR_1         COUNTRY        AND        YEAR           2004 NA      
-#> 5  4886 AIR_1         COUNTRY        AGO        YEAR           2004 NA      
+#> 1  4890 AIR_1         COUNTRY        AUS        YEAR           2004 NA      
+#> 2  4891 AIR_1         COUNTRY        AUT        YEAR           2004 NA      
+#> 3  4892 AIR_1         COUNTRY        AZE        YEAR           2004 NA      
+#> 4  4893 AIR_1         COUNTRY        BHS        YEAR           2004 NA      
+#> 5  4894 AIR_1         COUNTRY        BHR        YEAR           2004 NA      
 #> # … with 367 more rows, and 16 more variables: Dim1 <lgl>, Dim2Type <lgl>,
 #> #   Dim2 <lgl>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <dbl>,
 #> #   High <dbl>, Comments <lgl>, Date <chr>, TimeDimensionValue <chr>,
-#> #   TimeDimensionBegin <chr>, TimeDimensionEnd <chr>
+#> #   TimeDimensionBegin <dbl>, TimeDimensionEnd <dbl>
 ```
 
 From here, standard methods of data manipulation (e.g. base R, the
@@ -131,8 +131,8 @@ gho_data("AIR_1", "$filter=SpatialDim eq 'BDI'")
 #> # … with 16 more variables: Dim1 <lgl>, Dim2Type <lgl>, Dim2 <lgl>,
 #> #   Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>, DataSourceDim <lgl>,
 #> #   Value <chr>, NumericValue <dbl>, Low <lgl>, High <lgl>, Comments <lgl>,
-#> #   Date <chr>, TimeDimensionValue <chr>, TimeDimensionBegin <chr>,
-#> #   TimeDimensionEnd <chr>
+#> #   Date <chr>, TimeDimensionValue <chr>, TimeDimensionBegin <dbl>,
+#> #   TimeDimensionEnd <dbl>
 ```
 
 And we can get data from the GHO on multiple indicators in one call,
@@ -152,7 +152,7 @@ gho_data(c("AIR_1", "AIR_10", "AIR_11"), "$filter=SpatialDim eq 'BDI'")
 #> #   Dim2 <chr>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <dbl>,
 #> #   High <dbl>, Comments <lgl>, Date <chr>, TimeDimensionValue <chr>,
-#> #   TimeDimensionBegin <chr>, TimeDimensionEnd <chr>
+#> #   TimeDimensionBegin <dbl>, TimeDimensionEnd <dbl>
 ```
 
 We can even provide different filters for each indicator separately,
@@ -174,7 +174,7 @@ gho_data(c("AIR_1", "AIR_10", "AIR_11"),
 #> #   Dim2 <chr>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <dbl>,
 #> #   High <dbl>, Comments <lgl>, Date <chr>, TimeDimensionValue <chr>,
-#> #   TimeDimensionBegin <chr>, TimeDimensionEnd <chr>
+#> #   TimeDimensionBegin <dbl>, TimeDimensionEnd <dbl>
 ```
 
 Of course, the reality is that it’s likely easier for us to work outside
@@ -194,16 +194,16 @@ gho_indicators() %>%
 #> # A tibble: 25,302 x 23
 #>       Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
 #>    <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
-#> 1 273692 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDEN…
-#> 2 273693 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDEN…
-#> 3 273694 MALARIA_30539 COUNTRY        MWI        YEAR           2004 <NA>    
-#> 4 273695 MALARIA_30539 COUNTRY        TZA        YEAR           2004 RESIDEN…
-#> 5 273714 MALARIA_30539 COUNTRY        BDI        YEAR           2005 RESIDEN…
+#> 1 273718 MALARIA_30539 COUNTRY        GIN        YEAR           2005 RESIDEN…
+#> 2 273719 MALARIA_30539 COUNTRY        GIN        YEAR           2005 RESIDEN…
+#> 3 273720 MALARIA_30539 COUNTRY        GIN        YEAR           2005 <NA>    
+#> 4 273721 MALARIA_30539 COUNTRY        SLE        YEAR           2005 RESIDEN…
+#> 5 273722 MALARIA_30539 COUNTRY        TJK        YEAR           2005 RESIDEN…
 #> # … with 25,297 more rows, and 16 more variables: Dim1 <chr>, Dim2Type <lgl>,
 #> #   Dim2 <lgl>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <chr>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <lgl>,
 #> #   High <lgl>, Comments <lgl>, Date <chr>, TimeDimensionValue <chr>,
-#> #   TimeDimensionBegin <chr>, TimeDimensionEnd <chr>
+#> #   TimeDimensionBegin <dbl>, TimeDimensionEnd <dbl>
 ```
 
 And once we have that data, we can then filter, explore, and analyze the

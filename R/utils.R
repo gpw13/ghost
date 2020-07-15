@@ -23,6 +23,25 @@ assert_query <- function(qry) {
 }
 
 #' @noRd
+assert_year_range <- function(x) {
+  if (length(x) > 1 | !(x %in% c("numeric", "date"))) {
+    stop(sprintf("year_range needs to be a single string, either 'numeric' or 'date'."), call. = FALSE)
+  }
+}
+
+#' @noRd
+convert_year_range <- function(df, year_range) {
+  assert_year_range(year_range)
+  if (year_range == "numeric") {
+    fnct <- function(x) as.numeric(substr(x, 1, 4))
+  } else {
+    fnct <- as.Date
+  }
+  dplyr::mutate(df, dplyr::across(dplyr::any_of(c("TimeDimensionBegin", "TimeDimensionEnd")),
+                                  fnct))
+}
+
+#' @noRd
 modify_query <- function(qry) {
   gsub(" ", "%20", qry)
 }
