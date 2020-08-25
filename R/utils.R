@@ -15,7 +15,7 @@ assert_indicator <- function(inds) {
 
 #' @noRd
 assert_query <- function(qry) {
-  if (!is.null(qry)) {
+  if (!is.null(qry) && !is.na(qry)) {
     if (substr(qry, 0, 8) != "$filter=") {
       stop(sprintf("The query %s needs to start with $filter=", qry, call. = FALSE))
     }
@@ -43,7 +43,11 @@ convert_year_range <- function(df, year_range) {
 
 #' @noRd
 modify_query <- function(qry) {
-  gsub(" ", "%20", qry)
+  if(is.na(qry) || is.null(qry)) {
+    NULL
+  } else {
+    gsub(" ", "%20", qry)
+  }
 }
 
 #' @noRd
