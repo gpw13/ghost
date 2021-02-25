@@ -17,7 +17,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 # ghost
 
 <!-- badges: start -->
-  [![Travis build status](https://travis-ci.com/caldwellst/ghost.svg?branch=master)](https://travis-ci.com/caldwellst/ghost)
+[![R-CMD-check](https://github.com/caldwellst/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/ghost/actions)
 <!-- badges: end -->
 
 ## Overview

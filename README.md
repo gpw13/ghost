@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.com/caldwellst/ghost.svg?branch=master)](https://travis-ci.com/caldwellst/ghost)
+[![R-CMD-check](https://github.com/caldwellst/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/ghost/actions)
 <!-- badges: end -->
 
 ## Overview
@@ -18,17 +17,17 @@ API](https://www.who.int/data/gho/info/gho-odata-api). The package
 allows for exploration of indicators and dimensions available in the GHO
 and extract of these into R data frames.
 
-  - `gho_indicators()` provides a data frame of all available
+-   `gho_indicators()` provides a data frame of all available
     [indicators](https://www.who.int/data/gho/info/gho-odata-api#exe3)
     in the GHO.
-  - `gho_dimensions()` provides a data frame of all available
+-   `gho_dimensions()` provides a data frame of all available
     [dimensions](https://www.who.int/data/gho/info/gho-odata-api#exe1)
     in the GHO.
-  - `gho_dimension_values()` provides a data frame of all available
+-   `gho_dimension_values()` provides a data frame of all available
     [values for a single
     dimension](https://www.who.int/data/gho/info/gho-odata-api#exe2) in
     the GHO.
-  - `gho_data()` extracts data from a selection of indicators in the GHO
+-   `gho_data()` extracts data from a selection of indicators in the GHO
     and outputs all results in a single data frame.
 
 The interface is designed to be as simple as possible, only requiring
@@ -49,7 +48,7 @@ available in the GHO.
 library(ghost)
 
 gho_indicators()
-#> # A tibble: 2,315 x 3
+#> # A tibble: 2,366 x 3
 #>   IndicatorCode IndicatorName                                           Language
 #>   <chr>         <chr>                                                   <chr>   
 #> 1 AIR_1         Ambient air pollution attributable deaths               EN      
@@ -57,7 +56,7 @@ gho_indicators()
 #> 3 AIR_11        Household air pollution attributable deaths             EN      
 #> 4 AIR_12        Household air pollution attributable deaths in childre… EN      
 #> 5 AIR_13        Household air pollution attributable deaths per 100'00… EN      
-#> # … with 2,310 more rows
+#> # … with 2,361 more rows
 ```
 
 If we want the data for `AIR_1`, we could now just quickly access the
@@ -68,11 +67,11 @@ gho_data("AIR_1")
 #> # A tibble: 372 x 23
 #>      Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
 #>   <int> <chr>         <chr>          <chr>      <chr>         <int> <lgl>   
-#> 1  4890 AIR_1         COUNTRY        AUS        YEAR           2004 NA      
-#> 2  4891 AIR_1         COUNTRY        AUT        YEAR           2004 NA      
-#> 3  4892 AIR_1         COUNTRY        AZE        YEAR           2004 NA      
-#> 4  4893 AIR_1         COUNTRY        BHS        YEAR           2004 NA      
-#> 5  4894 AIR_1         COUNTRY        BHR        YEAR           2004 NA      
+#> 1  4882 AIR_1         COUNTRY        AFG        YEAR           2004 NA      
+#> 2  4883 AIR_1         COUNTRY        ALB        YEAR           2004 NA      
+#> 3  4884 AIR_1         COUNTRY        DZA        YEAR           2004 NA      
+#> 4  4885 AIR_1         COUNTRY        AND        YEAR           2004 NA      
+#> 5  4886 AIR_1         COUNTRY        AGO        YEAR           2004 NA      
 #> # … with 367 more rows, and 16 more variables: Dim1 <lgl>, Dim2Type <lgl>,
 #> #   Dim2 <lgl>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <dbl>,
@@ -88,7 +87,7 @@ look at available dimensions.
 
 ``` r
 gho_dimensions()
-#> # A tibble: 87 x 2
+#> # A tibble: 89 x 2
 #>   Code             Title                            
 #>   <chr>            <chr>                            
 #> 1 ADVERTISINGTYPE  SUBSTANCE_ABUSE_ADVERTISING_TYPES
@@ -96,7 +95,7 @@ gho_dimensions()
 #> 3 ALCOHOLTYPE      Beverage Types                   
 #> 4 AMRGLASSCATEGORY AMR GLASS Category               
 #> 5 ARCHIVE          Archive date                     
-#> # … with 82 more rows
+#> # … with 84 more rows
 ```
 
 Let’s say we want to filter by `COUNTRY`, then we can explore explore
@@ -104,7 +103,7 @@ the possible values the SpatialDim `COUNTRY` dimension can take.
 
 ``` r
 gho_dimension_values("COUNTRY")
-#> # A tibble: 216 x 6
+#> # A tibble: 245 x 6
 #>   Code  Title        ParentDimension Dimension ParentCode ParentTitle
 #>   <chr> <chr>        <chr>           <chr>     <chr>      <chr>      
 #> 1 AGO   Angola       REGION          COUNTRY   AFR        Africa     
@@ -112,7 +111,7 @@ gho_dimension_values("COUNTRY")
 #> 3 BEN   Benin        REGION          COUNTRY   AFR        Africa     
 #> 4 BFA   Burkina Faso REGION          COUNTRY   AFR        Africa     
 #> 5 BWA   Botswana     REGION          COUNTRY   AFR        Africa     
-#> # … with 211 more rows
+#> # … with 240 more rows
 ```
 
 If we wanted to only extract `AIR_1` data on Burundi from the GHO, then
@@ -194,11 +193,11 @@ gho_indicators() %>%
 #> # A tibble: 25,302 x 23
 #>       Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
 #>    <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
-#> 1 273718 MALARIA_30539 COUNTRY        GIN        YEAR           2005 RESIDEN…
-#> 2 273719 MALARIA_30539 COUNTRY        GIN        YEAR           2005 RESIDEN…
-#> 3 273720 MALARIA_30539 COUNTRY        GIN        YEAR           2005 <NA>    
-#> 4 273721 MALARIA_30539 COUNTRY        SLE        YEAR           2005 RESIDEN…
-#> 5 273722 MALARIA_30539 COUNTRY        TJK        YEAR           2005 RESIDEN…
+#> 1 273692 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDEN…
+#> 2 273693 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDEN…
+#> 3 273694 MALARIA_30539 COUNTRY        MWI        YEAR           2004 <NA>    
+#> 4 273695 MALARIA_30539 COUNTRY        TZA        YEAR           2004 RESIDEN…
+#> 5 273714 MALARIA_30539 COUNTRY        BDI        YEAR           2005 RESIDEN…
 #> # … with 25,297 more rows, and 16 more variables: Dim1 <chr>, Dim2Type <lgl>,
 #> #   Dim2 <lgl>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <chr>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <lgl>,
