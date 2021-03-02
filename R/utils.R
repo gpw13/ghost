@@ -57,18 +57,22 @@ gho_api <- function(path = NULL, query = NULL) {
   url <- httr::modify_url("https://ghoapi.azureedge.net", path = paste0("api/", path), query = query)
 
   resp <- httr::GET(url, httr::accept_json())
-  if (httr::http_type(resp) != "application/json") {
-    stop("API did not return json", call. = FALSE)
-  }
+
 
   if (httr::http_error(resp)) {
     stop(
       sprintf(
-        "GHO API request failed with status %s",
-        httr::status_code(resp)
+        strwrap("GHO API request failed with status %s
+                and message: '%s'.", prefix = " ", initial = ""),
+        httr::status_code(resp),
+        httr::content(resp, as = "text")
       ),
       call. = FALSE
     )
+  }
+
+  if (httr::http_type(resp) != "application/json") {
+    stop("API did not return json", call. = FALSE)
   }
 
   parsed <- jsonlite::fromJSON(httr::content(resp, "text"))
