@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-# ghost
+# ghost <a href='https://github.com/caldwellst/ghost'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/caldwellst/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/ghost/actions)

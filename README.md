@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ghost
+# ghost <a href='https://github.com/caldwellst/ghost'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
@@ -48,7 +48,7 @@ available in the GHO.
 library(ghost)
 
 gho_indicators()
-#> # A tibble: 2,366 x 3
+#> # A tibble: 2,360 x 3
 #>   IndicatorCode IndicatorName                                           Language
 #>   <chr>         <chr>                                                   <chr>   
 #> 1 AIR_1         Ambient air pollution attributable deaths               EN      
@@ -56,7 +56,7 @@ gho_indicators()
 #> 3 AIR_11        Household air pollution attributable deaths             EN      
 #> 4 AIR_12        Household air pollution attributable deaths in childre… EN      
 #> 5 AIR_13        Household air pollution attributable deaths per 100'00… EN      
-#> # … with 2,361 more rows
+#> # … with 2,355 more rows
 ```
 
 If we want the data for `AIR_1`, we could now just quickly access the
@@ -104,13 +104,13 @@ the possible values the SpatialDim `COUNTRY` dimension can take.
 ``` r
 gho_dimension_values("COUNTRY")
 #> # A tibble: 245 x 6
-#>   Code  Title        ParentDimension Dimension ParentCode ParentTitle
-#>   <chr> <chr>        <chr>           <chr>     <chr>      <chr>      
-#> 1 AGO   Angola       REGION          COUNTRY   AFR        Africa     
-#> 2 BDI   Burundi      REGION          COUNTRY   AFR        Africa     
-#> 3 BEN   Benin        REGION          COUNTRY   AFR        Africa     
-#> 4 BFA   Burkina Faso REGION          COUNTRY   AFR        Africa     
-#> 5 BWA   Botswana     REGION          COUNTRY   AFR        Africa     
+#>   Code  Title        Dimension ParentDimension ParentCode ParentTitle
+#>   <chr> <chr>        <chr>     <chr>           <chr>      <chr>      
+#> 1 AGO   Angola       COUNTRY   REGION          AFR        Africa     
+#> 2 BDI   Burundi      COUNTRY   REGION          AFR        Africa     
+#> 3 BEN   Benin        COUNTRY   REGION          AFR        Africa     
+#> 4 BFA   Burkina Faso COUNTRY   REGION          AFR        Africa     
+#> 5 BWA   Botswana     COUNTRY   REGION          AFR        Africa     
 #> # … with 240 more rows
 ```
 
@@ -140,13 +140,13 @@ with the output data frames already merged together.
 ``` r
 gho_data(c("AIR_1", "AIR_10", "AIR_11"), "$filter=SpatialDim eq 'BDI'")
 #> # A tibble: 21 x 23
-#>       Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
-#>    <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
-#> 1 4.91e3 AIR_1         COUNTRY        BDI        YEAR           2004 <NA>    
-#> 2 2.19e4 AIR_1         COUNTRY        BDI        YEAR           2008 <NA>    
-#> 3 6.48e3 AIR_10        COUNTRY        BDI        YEAR           2004 <NA>    
-#> 4 1.96e7 AIR_11        COUNTRY        BDI        YEAR           2016 SEX     
-#> 5 1.96e7 AIR_11        COUNTRY        BDI        YEAR           2016 SEX     
+#>         Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
+#>      <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
+#> 1     4909 AIR_1         COUNTRY        BDI        YEAR           2004 <NA>    
+#> 2    21904 AIR_1         COUNTRY        BDI        YEAR           2008 <NA>    
+#> 3     6479 AIR_10        COUNTRY        BDI        YEAR           2004 <NA>    
+#> 4 19580064 AIR_11        COUNTRY        BDI        YEAR           2016 SEX     
+#> 5 19580065 AIR_11        COUNTRY        BDI        YEAR           2016 SEX     
 #> # … with 16 more rows, and 16 more variables: Dim1 <chr>, Dim2Type <chr>,
 #> #   Dim2 <chr>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <dbl>,
@@ -162,13 +162,13 @@ such as Burundi for `AIR_1`, Uganda for `AIR_10`, and South Africa for
 gho_data(c("AIR_1", "AIR_10", "AIR_11"), 
          c("$filter=SpatialDim eq 'BDI'", "$filter=SpatialDim eq 'UGA'", "$filter=SpatialDim eq 'ZAF'"))
 #> # A tibble: 21 x 23
-#>       Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
-#>    <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
-#> 1 4.91e3 AIR_1         COUNTRY        BDI        YEAR           2004 <NA>    
-#> 2 2.19e4 AIR_1         COUNTRY        BDI        YEAR           2008 <NA>    
-#> 3 6.61e3 AIR_10        COUNTRY        UGA        YEAR           2004 <NA>    
-#> 4 1.96e7 AIR_11        COUNTRY        ZAF        YEAR           2016 SEX     
-#> 5 1.96e7 AIR_11        COUNTRY        ZAF        YEAR           2016 SEX     
+#>         Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
+#>      <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
+#> 1     4909 AIR_1         COUNTRY        BDI        YEAR           2004 <NA>    
+#> 2    21904 AIR_1         COUNTRY        BDI        YEAR           2008 <NA>    
+#> 3     6612 AIR_10        COUNTRY        UGA        YEAR           2004 <NA>    
+#> 4 19583070 AIR_11        COUNTRY        ZAF        YEAR           2016 SEX     
+#> 5 19583071 AIR_11        COUNTRY        ZAF        YEAR           2016 SEX     
 #> # … with 16 more rows, and 16 more variables: Dim1 <chr>, Dim2Type <chr>,
 #> #   Dim2 <chr>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <lgl>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <dbl>,
@@ -191,13 +191,13 @@ gho_indicators() %>%
   pull(IndicatorCode) %>%
   gho_data()
 #> # A tibble: 25,302 x 23
-#>       Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type
-#>    <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>   
-#> 1 273692 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDEN…
-#> 2 273693 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDEN…
-#> 3 273694 MALARIA_30539 COUNTRY        MWI        YEAR           2004 <NA>    
-#> 4 273695 MALARIA_30539 COUNTRY        TZA        YEAR           2004 RESIDEN…
-#> 5 273714 MALARIA_30539 COUNTRY        BDI        YEAR           2005 RESIDEN…
+#>       Id IndicatorCode SpatialDimType SpatialDim TimeDimType TimeDim Dim1Type   
+#>    <int> <chr>         <chr>          <chr>      <chr>         <int> <chr>      
+#> 1 273692 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDENCEA…
+#> 2 273693 MALARIA_30539 COUNTRY        MWI        YEAR           2004 RESIDENCEA…
+#> 3 273694 MALARIA_30539 COUNTRY        MWI        YEAR           2004 <NA>       
+#> 4 273695 MALARIA_30539 COUNTRY        TZA        YEAR           2004 RESIDENCEA…
+#> 5 273714 MALARIA_30539 COUNTRY        BDI        YEAR           2005 RESIDENCEA…
 #> # … with 25,297 more rows, and 16 more variables: Dim1 <chr>, Dim2Type <lgl>,
 #> #   Dim2 <lgl>, Dim3Type <lgl>, Dim3 <lgl>, DataSourceDimType <chr>,
 #> #   DataSourceDim <lgl>, Value <chr>, NumericValue <dbl>, Low <lgl>,
