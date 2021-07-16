@@ -4,7 +4,7 @@ Title: R Client for the Global Health Observatory API
 Version: 0.1.0
 Authors@R: person("Seth", "Caldwell", email = "caldwellst@gmail.com", role = c("aut", "cre"))
 Description: Provides access to data stored in the Global Health Observatory (GHO) API.
-URL: http://www9.who.int/gho/en/, https://github.com/caldwellst/ghost
+URL: http://www9.who.int/gho/en/, https://github.com/gpw13/ghost
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -17,3 +17,7 @@ Imports:
     purrr
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

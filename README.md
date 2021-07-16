@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ghost <a href='https://github.com/caldwellst/ghost'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# ghost <a href='https://github.com/gpw13/ghost'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/caldwellst/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/ghost/actions)
+[![R-CMD-check](https://github.com/gpw13/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/gpw13/ghost/actions)
 <!-- badges: end -->
 
 ## Overview
@@ -36,8 +36,7 @@ compatible with using more complex queries in line with the OData
 protocol. Details on its implementation available in the [OData
 documentation](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/).
 
-ghost can be installed using
-`remotes::install_github("caldwellst/ghost")`
+ghost can be installed using `remotes::install_github("gpw13/ghost")`
 
 ## Usage
 
@@ -48,7 +47,7 @@ available in the GHO.
 library(ghost)
 
 gho_indicators()
-#> # A tibble: 2,360 x 3
+#> # A tibble: 2,359 x 3
 #>   IndicatorCode IndicatorName                                           Language
 #>   <chr>         <chr>                                                   <chr>   
 #> 1 AIR_1         Ambient air pollution attributable deaths               EN      
@@ -56,7 +55,7 @@ gho_indicators()
 #> 3 AIR_11        Household air pollution attributable deaths             EN      
 #> 4 AIR_12        Household air pollution attributable deaths in childre… EN      
 #> 5 AIR_13        Household air pollution attributable deaths per 100'00… EN      
-#> # … with 2,355 more rows
+#> # … with 2,354 more rows
 ```
 
 If we want the data for `AIR_1`, we could now just quickly access the
@@ -87,7 +86,7 @@ look at available dimensions.
 
 ``` r
 gho_dimensions()
-#> # A tibble: 89 x 2
+#> # A tibble: 91 x 2
 #>   Code             Title                            
 #>   <chr>            <chr>                            
 #> 1 ADVERTISINGTYPE  SUBSTANCE_ABUSE_ADVERTISING_TYPES
@@ -95,7 +94,7 @@ gho_dimensions()
 #> 3 ALCOHOLTYPE      Beverage Types                   
 #> 4 AMRGLASSCATEGORY AMR GLASS Category               
 #> 5 ARCHIVE          Archive date                     
-#> # … with 84 more rows
+#> # … with 86 more rows
 ```
 
 Let’s say we want to filter by `COUNTRY`, then we can explore explore

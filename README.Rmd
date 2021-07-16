@@ -14,10 +14,10 @@ knitr::opts_chunk$set(
 options(tibble.print_min = 5, tibble.print_max = 5)
 ```
 
-# ghost <a href='https://github.com/caldwellst/ghost'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# ghost <a href='https://github.com/gpw13/ghost'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/caldwellst/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/caldwellst/ghost/actions)
+[![R-CMD-check](https://github.com/gpw13/ghost/workflows/R-CMD-check/badge.svg)](https://github.com/gpw13/ghost/actions)
 <!-- badges: end -->
 
 ## Overview
@@ -31,52 +31,9 @@ ghost is an R package designed to provide a simple interface for extracting data
 
 The interface is designed to be as simple as possible, only requiring input of the code of an indicator to extract it. However, it is also compatible with using more complex queries in line with the OData protocol. Details on its implementation available in the [OData documentation](https://www.odata.org/documentation/odata-version-2-0/uri-conventions/).
 
-ghost can be installed using `remotes::install_github("caldwellst/ghost")`
+ghost can be installed using `remotes::install_github("gpw13/ghost")`
 
 ## Usage
 
-To begin, we can use `gho_indicators()` to begin to explore all data available in the GHO.
-
-```{r gho_indicators}
-library(ghost)
-
-gho_indicators()
+```{r child = "vignettes/ghost_usage.Rmd"}
 ```
-If we want the data for `AIR_1`, we could now just quickly access the data frame using `gho_data()`.
-```{r gho_access_1}
-gho_data("AIR_1")
-```
-From here, standard methods of data manipulation (e.g. base R, the tidyverse) could be used to select variables, filter rows, and explore the data. However, we could also provide OData queries as desired, filtering on different dimensions of the data. Let's first have a quick look at available dimensions.
-```{r gho_dimensions_1}
-gho_dimensions()
-```
-Let's say we want to filter by `COUNTRY`, then we can explore explore the possible values the SpatialDim `COUNTRY` dimension can take.
-```{r gho_dim_vals_1}
-gho_dimension_values("COUNTRY")
-```
-
-If we wanted to only extract `AIR_1` data on Burundi from the GHO, then we can now implement an OData query using the code we've identified above. While ghost doesn't implement complex checks on your OData queries due to their complexity, it allows you to type them with spaces and checks that each query begins with the required `"$filter=..."`.
-```{r air_1_again}
-gho_data("AIR_1", "$filter=SpatialDim eq 'BDI'")
-```
-And we can get data from the GHO on multiple indicators in one call, with the output data frames already merged together.
-```{r gho_data_2}
-gho_data(c("AIR_1", "AIR_10", "AIR_11"), "$filter=SpatialDim eq 'BDI'")
-```
-
-We can even provide different filters for each indicator separately, such as Burundi for `AIR_1`, Uganda for `AIR_10`, and South Africa for `AIR_11`. 
-```{r gho_data_3}
-gho_data(c("AIR_1", "AIR_10", "AIR_11"), 
-         c("$filter=SpatialDim eq 'BDI'", "$filter=SpatialDim eq 'UGA'", "$filter=SpatialDim eq 'ZAF'"))
-```
-Of course, the reality is that it's likely easier for us to work outside the OData filtering framework and directly in R, so here's a final more complex example using dplyr and stringr alongside ghost to automatically download all indicators with the word "drug" in the indicator name (case insensitive).
-```{r gho_dplyr, message = FALSE}
-library(dplyr)
-library(stringr)
-
-gho_indicators() %>%
-  filter(str_detect(str_to_lower(IndicatorName), "drug")) %>%
-  pull(IndicatorCode) %>%
-  gho_data()
-```
-And once we have that data, we can then filter, explore, and analyze the data with our standard R workflow, or even export the downloaded data to Excel or other analytical tools for further use.
