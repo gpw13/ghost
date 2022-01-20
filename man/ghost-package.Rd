@@ -6,13 +6,16 @@
 \alias{ghost-package}
 \title{ghost: R Client for the Global Health Observatory API}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Provides access to data stored in the Global Health Observatory (GHO) API.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{http://www9.who.int/gho/en/}
-  \item \url{https://github.com/caldwellst/ghost}
+  \item \url{https://github.com/gpw13/ghost}
+  \item \url{https://gpw13.github.io/ghost/}
 }
 
 }
