@@ -3,7 +3,7 @@ pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   ghost_usage: ghost_usage.html
-last_built: 2022-01-20T09:12Z
+last_built: 2022-01-20T09:15Z
 urls:
   reference: https://gpw13.github.io/ghost/reference
   article: https://gpw13.github.io/ghost/articles
