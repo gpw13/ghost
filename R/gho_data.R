@@ -67,5 +67,3 @@ gho_dimension_values <- function(dim, query = NULL) {
   resp <- gho_api(paste0("DIMENSION/", dim, "/DimensionValues"), query = query)
   resp$content
 }
-
-
