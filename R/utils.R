@@ -37,13 +37,15 @@ convert_year_range <- function(df, year_range) {
   } else {
     fnct <- as.Date
   }
-  dplyr::mutate(df, dplyr::across(dplyr::any_of(c("TimeDimensionBegin", "TimeDimensionEnd")),
-                                  fnct))
+  dplyr::mutate(df, dplyr::across(
+    dplyr::any_of(c("TimeDimensionBegin", "TimeDimensionEnd")),
+    fnct
+  ))
 }
 
 #' @noRd
 modify_query <- function(qry) {
-  if(is.na(qry) || is.null(qry)) {
+  if (is.na(qry) || is.null(qry)) {
     NULL
   } else {
     gsub(" ", "%20", qry)
